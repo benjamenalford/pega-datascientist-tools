@@ -3,7 +3,7 @@ title: "ADM Standalone Model Report"
 title-block-banner: true
 author: "Pega Data Scientist tools"
 date: today
-subtitle: > 
+subtitle: >
   Details of one ADM model instance
 execute:
   echo: false
@@ -41,42 +41,7 @@ from great_tables import GT, style, md, html, loc
 import plotly.express as px
 from plotly.graph_objects import Figure
 from typing import Union, Optional, Literal
-
-# Convenience wrapper functions
-
-
-def quarto_print(text):
-    display(Markdown(text))
-
-
-def quarto_callout_info(info):
-    quarto_print(
-        """
-::: {.callout-note}
-%s
-:::
-"""
-        % info
-    )
-
-
-def quarto_callout_important(info):
-    quarto_print(
-        """
-::: {.callout-important}
-%s
-:::
-"""
-        % info
-    )
-
-
-def polars_col_exists(df, col):
-    return col in df.columns and df.schema[col] != pl.Null
-
-
-def polars_subset_to_existing_cols(cols):
-    return [col for col in cols if col in datamart_all_columns]
+from quarto_helpers import *
 
 ```
 
@@ -818,7 +783,7 @@ def show_single_predictor(pred):
         .tab_options(table_font_size=8)
         .fmt_nanoplot(columns="Z Ratio", plot_type="bar", autoscale=False)
     )
-    
+
     quarto_print("   ")
     quarto_print("___")  # renders as horizontal line
 
